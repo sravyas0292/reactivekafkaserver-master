@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.List;
-//@EnableScheduling
+@EnableScheduling
 @SpringBootApplication
 public class ReactiveKafkaWebsocketApplication {
 

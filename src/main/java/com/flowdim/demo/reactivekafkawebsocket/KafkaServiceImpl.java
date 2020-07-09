@@ -35,24 +35,25 @@ public class KafkaServiceImpl implements KafkaService {
 
     KafkaServiceImpl() throws IOException {
 
-        Properties kafkaProperties = PropertiesLoaderUtils.loadAllProperties("ccloud.properties");
-        kafkaProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
-        kafkaProperties.put(ConsumerConfig.CLIENT_ID_CONFIG, "reactive-consumer");
-        kafkaProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "sample-group");
-        kafkaProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        kafkaProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        kafkaProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+//        Properties kafkaProperties = PropertiesLoaderUtils.loadAllProperties("ccloud.properties");
+//        kafkaProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
+//        kafkaProperties.put(ConsumerConfig.CLIENT_ID_CONFIG, "reactive-consumer");
+//        kafkaProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "sample-group");
+//        kafkaProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+//        kafkaProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+//        kafkaProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
-//        Properties props = new Properties();
-//        props.put("bootstrap.servers", "localhost:9092");
-//        props.put("client.id","reactive-consumer");
-//        props.put("group.id", "consumer-tutorial");
-//        props.put("key.deserializer", StringDeserializer.class.getName());
-//        props.put("value.deserializer", StringDeserializer.class.getName());
+        Properties props = new Properties();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        props.put(ConsumerConfig.CLIENT_ID_CONFIG,"reactive-consumer");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "sample-group");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
-        ReceiverOptions<String, String> receiverOptions = ReceiverOptions.create(kafkaProperties);
+        ReceiverOptions<String, String> receiverOptions = ReceiverOptions.create(props);
 
-        testTopicStream = createTopicCache(receiverOptions, "chartTopic");
+        testTopicStream = createTopicCache(receiverOptions, "LineChartTopic");
     }
 
 
